@@ -1,8 +1,8 @@
 # sharedb-redis-pubsub
 
-  [![NPM Version](https://img.shields.io/npm/v/sharedb-redis-pubsub.svg)](https://npmjs.org/package/sharedb-redis-pubsub)
-  [![Build Status](https://travis-ci.org/share/sharedb-redis-pubsub.svg?branch=master)](https://travis-ci.org/share/sharedb-redis-pubsub)
-  [![Coverage Status](https://coveralls.io/repos/github/share/sharedb-redis-pubsub/badge.svg?branch=master)](https://coveralls.io/github/share/sharedb-redis-pubsub?branch=master)
+  [![NPM Version](https://img.shields.io/npm/v/@teamwork/sharedb-redis-pubsub.svg)](https://npmjs.org/package/@teamwork/sharedb-redis-pubsub)
+  [![Build Status](https://travis-ci.org/Teamwork/sharedb-redis-pubsub.svg?branch=master)](https://travis-ci.org/Teamwork/sharedb-redis-pubsub)
+  [![Coverage Status](https://coveralls.io/repos/github/Teamwork/sharedb-redis-pubsub/badge.svg?branch=master)](https://coveralls.io/github/Teamwork/sharedb-redis-pubsub?branch=master)
 
 Redis pub/sub adapter adapter for ShareDB.
 
@@ -13,7 +13,7 @@ This ShareDB add-on gives you horizontal scalability; the ability to have a clus
 This snippet shows how to load this library and pass it into a new ShareDB instance.
 
 ```js
-var redisPubsub = require('sharedb-redis-pubsub')(redisClient); // Redis client being an existing redis client connection
+var redisPubsub = require('@teamwork/sharedb-redis-pubsub')(redisClient); // Redis client being an existing redis client connection
 
 var backend = new ShareDB({
   db: db,  // db would be your mongo db or other storage location

@@ -1,12 +1,14 @@
 {
-  "name": "sharedb-redis-pubsub",
+  "name": "@teamwork/sharedb-redis-pubsub",
   "version": "1.0.0-beta.1",
   "description": "Redis pub/sub adapter adapter for ShareDB",
   "main": "index.js",
   "dependencies": {
-    "async": "^1.5.0",
-    "redis": "^2.6.0",
-    "sharedb": "^1.0.0-beta"
+    "async": "^1.5.0"
+  },
+  "peerDependencies": {
+      "redis": "^2.6.0",
+      "@teamwork/sharedb": "^1.1.4"
   },
   "devDependencies": {
     "coveralls": "^2.11.8",
@@ -18,7 +20,7 @@
     "test": "node_modules/.bin/mocha",
     "test-cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha"
   },
-  "repository": "git://github.com/share/sharedb-redis-pubsub.git",
+  "repository": "git://github.com/teamwork/sharedb-redis-pubsub.git",
   "author": "Nate Smith",
   "license": "MIT"
 }
