@@ -1,6 +1,6 @@
 {
   "name": "@teamwork/sharedb-redis-pubsub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Redis pub/sub adapter adapter for ShareDB",
   "main": "index.js",
   "dependencies": {
