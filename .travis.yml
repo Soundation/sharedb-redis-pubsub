@@ -5,9 +5,6 @@ node_js:
   - "9"
   - "10"
 services: redis-server
-script:
-  # Install peer dependencies
-  - "npm i redis@^2.6.0 @teamwork/sharedb@^1.1.4"
-  - "npm run test-cover"
+script: "npm run test-cover"
 # Send coverage data to Coveralls
 after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
