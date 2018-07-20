@@ -1,3 +1,8 @@
+# v2.0.0
+
+- No changes - just matching the major version of sharedb.
+
+
 # v1.0.2
 
 ## Non-breaking changes
