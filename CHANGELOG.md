@@ -1,3 +1,10 @@
+# v3.0.0
+
+## Breaking changes
+
+- Updated the major version of the @teamwork/sharedb dependency.
+
+
 # v2.0.0
 
 - No changes - just matching the major version of sharedb.
