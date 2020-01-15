@@ -1,5 +1,5 @@
 var redis = require('redis');
-var PubSub = require('@teamwork/sharedb').PubSub;
+var PubSub = require('@soundation/sharedb').PubSub;
 
 // Redis pubsub driver for ShareDB.
 //
