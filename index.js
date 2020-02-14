@@ -18,6 +18,8 @@ function RedisPubSub(options) {
   // options if not provided
   this.observer = options.observer || redis.createClient(this.client.options);
 
+  this.idSeqPrefix = this.prefix ? ':idseq:' : 'idseq:';
+
   var pubsub = this;
   this.observer.on('message', function(channel, message) {
     var data = JSON.parse(message);
@@ -57,6 +59,52 @@ RedisPubSub.prototype._publish = function(channels, data, callback) {
   var args = [PUBLISH_SCRIPT, 0, message].concat(channels);
   this.client.eval(args, callback);
 };
+
+RedisPubSub.prototype._requestIdSeq = function(id, callback) {
+  var client = this.client;
+  var key = this.idSeqPrefix + id;
+
+  function retry() {
+    client.bitpos(key, 0, function(err, bp) {
+      if(err) { return callback(err); }
+      client.setbit(key, bp, 1, function (err, prev) {
+        if(err) { return callback(err); }
+
+        if(prev === 0) {
+          callback(null, bp);
+        } else {
+          setTimeout(retry, 10 * Math.random());
+        }
+      });
+    })
+  }
+
+  retry();
+}
+
+RedisPubSub.prototype._resignIdSeq = function(id, seq, callback) {
+  var client = this.client;
+  var key = this.idSeqPrefix + id;
+
+  client.setbit(key, seq, 0, function (err) {
+    if(err) { return callback(err); }
+
+    client.watch(key, function (err) {
+      if(err) { return callback(err); }
+      client.bitcount(key, function(err, count) {
+        if(err) { return callback(err); }
+        if(count === 0) {
+          client.multi().del(key).exec(function(err) {
+            if(err) { return callback(err); }
+            callback(null);
+          });
+        } else {
+          callback(null);
+        }
+      });
+    });
+  });
+}
 
 var PUBLISH_SCRIPT =
   'for i = 2, #ARGV do ' +
